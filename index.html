@@ -32,6 +32,71 @@
                 <p>Expert implementation of enterprise systems to streamline operations and drive growth</p>
             </div>
         </section>
+
+        <!-- Carousel Section -->
+        <section class="carousel-section">
+            <div class="container">
+                <h2>Our Solutions in Action</h2>
+                <div class="carousel">
+                    <div class="carousel-track">
+                        <div class="carousel-slide">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop" alt="CRM Dashboard">
+                            <div class="slide-caption">
+                                <h3>CRM Implementation</h3>
+                                <p>Customer Relationship Management Solutions</p>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=500&fit=crop" alt="ERP System">
+                            <div class="slide-caption">
+                                <h3>ERP Systems</h3>
+                                <p>Enterprise Resource Planning Integration</p>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop" alt="Data Analytics">
+                            <div class="slide-caption">
+                                <h3>Data Analytics</h3>
+                                <p>Real-time Business Intelligence</p>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=500&fit=crop" alt="Business Integration">
+                            <div class="slide-caption">
+                                <h3>System Integration</h3>
+                                <p>Seamless Data Synchronization</p>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=500&fit=crop" alt="Team Collaboration">
+                            <div class="slide-caption">
+                                <h3>Training & Support</h3>
+                                <p>Expert Implementation & Training</p>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop" alt="Business Growth">
+                            <div class="slide-caption">
+                                <h3>Business Transformation</h3>
+                                <p>Drive Growth & Efficiency</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-controls">
+                    <button class="carousel-btn prev" onclick="moveCarousel(-1)">&#10094;</button>
+                    <button class="carousel-btn next" onclick="moveCarousel(1)">&#10095;</button>
+                </div>
+                <div class="carousel-dots">
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                    <span class="dot" onclick="currentSlide(4)"></span>
+                    <span class="dot" onclick="currentSlide(5)"></span>
+                    <span class="dot" onclick="currentSlide(6)"></span>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- Footer -->
@@ -67,5 +132,53 @@
             <p>&copy; 2026 Enterprise Solutions Inc. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        let currentIndex = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.dot');
+        const slidesToShow = 3;
+
+        function updateCarousel() {
+            const track = document.querySelector('.carousel-track');
+            const slideWidth = slides[0].offsetWidth + 20; // 20px gap
+            const offset = -(currentIndex * slideWidth);
+            track.style.transform = `translateX(${offset}px)`;
+
+            // Update dots
+            dots.forEach((dot, index) => {
+                dot.classList.remove('active');
+                if (index === currentIndex) {
+                    dot.classList.add('active');
+                }
+            });
+        }
+
+        function moveCarousel(direction) {
+            currentIndex += direction;
+            if (currentIndex < 0) {
+                currentIndex = slides.length - slidesToShow;
+            } else if (currentIndex > slides.length - slidesToShow) {
+                currentIndex = 0;
+            }
+            updateCarousel();
+        }
+
+        function currentSlide(n) {
+            currentIndex = n - 1;
+            if (currentIndex > slides.length - slidesToShow) {
+                currentIndex = slides.length - slidesToShow;
+            }
+            updateCarousel();
+        }
+
+        // Initialize carousel
+        updateCarousel();
+
+        // Auto-advance carousel every 5 seconds
+        setInterval(() => {
+            moveCarousel(1);
+        }, 5000);
+    </script>
 </body>
 </html>
